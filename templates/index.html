@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-primary" style="margin-bottom: 50px;">
+        <span class="navbar-brand mb-0 h1 text-white">GitHub User Finder</span>
+    </nav>
+
+    <div class="card border-info mb-8" >
+        <div class="card-header">Search a GitHub User</div>
+        <div class="card-body text-center mt-5">
+        
+            <form id="username" method="post">
+            <div class="form-row align-items-center">
+              
+                <div class="col-sm-11 my-1">
+                  <label class="sr-only" for="inlineFormInputGroupUsername">GitHub Username</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" name="username" placeholder="GitHub Username">
+                  </div>
+                </div>
+
+                <div class="col-auto my-1">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    {% if djson["login"] %}
+    <div style="margin-top: 25px;" class="card border-info mb-8" >
+        <div class="card-header">User Info</div>
+        <div class="card-body text-center mt-5">
+            <div class="row">
+                <div class="col-4"><img class="rounded-circle" style="max-height: 250px;" src={{djson["avatar_url"]}}></div>
+                <div class="col-8 align-items-center text-center col-centered">  
+                    <div class="row">
+                        <div class="col"><h1>{{djson["login"]}}</h1></div>
+                    </div>
+                    <div class="row">
+                        <div class="col alert alert-primary"><a href="#">{{djson["followers"]}} Followers</a></div>
+                        <div class="col alert alert-success"><a href="#">{{djson["following"]}}Following</a></div>
+                        <div class="col alert alert-warning"><a href="#">{{djson["public_repos"]}}Repos</a></div>
+                        <div class="col alert alert-info"><a href="#">{{djson["public_gists"]}}Gists</a></div>
+                    </div>
+
+
+                </div>
+
+              </div>
+
+        </div>
+        </div>
+    </div>
+
+    {% elif djson["message"] == "Not Found" %}
+    <div class="alert alert-danger" role="alert">
+        Kullanıcı bulunamadı
+      </div>   
+
+
+    {% endif %}
+    
+
+
+
+
+   
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
